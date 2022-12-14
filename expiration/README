@@ -1,0 +1,16 @@
+This service is tend to send events when order is expired.
+With NATS Streaming Server we cant fire events in specific time in the future For that we use bull package.
+Bull is a liberary that help us to send jobs (sort of events). the mechanisim works similar to NATS
+but it is not build to be stable and strong like nats.
+
+IMPORTANT: As long as we want to change the "expirs delay event" we need set couple of changes:
+
+1. order service (controller)
+   const EXPIRATION_MIN = 1;
+   const EXPIRATION_SECONDS = EXPIRATION_MIN \* 60;
+
+2. expiration serivce (OrderCreatedListener)
+   delay: 60000 => 1 min
+
+3. nextjs (CreateOrder component)
+   const [timeLeft, setTimeLeft] = useState(60);

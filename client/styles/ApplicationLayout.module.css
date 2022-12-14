@@ -1,0 +1,26 @@
+.main {
+  height: 95vh;
+  /* background-image: url('../assets/4880206.jpg'); */
+  /* background-position: center; */
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
+}
+
+.footer {
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  background-color: black;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.desc-text {
+  text-align: center;
+  font-size: 0.7rem;
+  color: white;
+}
+
+.desc-text span {
+  font-weight: bolder;
+}

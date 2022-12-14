@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tickets-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tickets-mongo
+  template:
+    metadata:
+      labels:
+        app: tickets-mongo
+    spec:
+      containers:
+        - name: tickets-mongo
+          # mongo is an build in image on DockerHub
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tickets-mongo-srv
+spec:
+  selector:
+    app: tickets-mongo
+  ports:
+    - name: database
+      protocol: TCP
+      # By defult MongoDB listens for incoming traffic on 27017
+      port: 27017
+      targetPort: 27017

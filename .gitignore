@@ -1,0 +1,8 @@
+auth/node_modules
+client/node_modules
+tickets/node_modules
+expiration/node_modules
+common/node_modules
+orders/node_modules
+payments/node_modules
+nats-streaming-server-test

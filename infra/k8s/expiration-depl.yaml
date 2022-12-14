@@ -1,0 +1,31 @@
+# We dont have a ClusterID service in this pod beacuse this service is not connected to any of the other services (only by NATS!)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expiration-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expiration
+  template:
+    metadata:
+      labels:
+        app: expiration
+    spec:
+      containers:
+        - name: expiration
+          image: idoadar/expiration:latest
+          env:
+            - name: NATS_CLUSTER_ID
+              value: 'ticketing'
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            # NATS_CLIENT_ID should get unique value in every copy of the service. So it cant be hardcoded.
+            # This implementaion gives to any client service a name of the pod itself (pod name muse be unique)
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: REDIS_HOST
+              value: expiration-redis-srv

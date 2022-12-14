@@ -1,0 +1,14 @@
+.order-container {
+  width: 550px;
+  margin: 32px 0;
+}
+
+.order {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 6px 0;
+  padding: 10px 20px;
+  border-bottom: 1px solid #3c4f6177;
+}
